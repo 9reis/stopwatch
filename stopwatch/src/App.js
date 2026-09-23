@@ -19,19 +19,34 @@ function App() {
   }, [running]);
 
   return (
-    <>
-      <h1>Stopatch</h1>
-      <div>
+    <div className="flex flex-col items-center justify-center py-8">
+      <h1 className='text-2xl font-semibold'>Stopatch</h1>
+      <div className='text-xl font-semibold py-3'>
         <span>{("0" + Math.floor((time / 6000) % 60)).slice(-2)} : </span>
         <span>{("0" + Math.floor((time / 100) % 60)).slice(-2)} : </span>
         <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
       </div>
-      <div>
-        <button onClick={() => setRunning(true)} >Start</button>
-        <button onClick={() => setRunning(false)} >Stop</button>
-        <button onClick={() => setTime(0)}>Reset</button>
+      <div className='w-1/3 max-w-sm flex flex-row justify-evenly'>
+        {running ?
+          (<button
+            className="border rounded-lg py-1 px-3.5"
+            onClick={() => setRunning(false)}>
+            Stop
+          </button>)
+          :
+          (<button
+            className='border rounded-lg py-1 px-3'
+            onClick={() => setRunning(true)}>
+            Start
+          </button>)
+        }
+        <button
+          className='border rounded-lg px-1 py-2.5'
+          onClick={() => setTime(0)}>
+          Reset
+        </button>
       </div>
-    </>
+    </div>
   );
 }
 
